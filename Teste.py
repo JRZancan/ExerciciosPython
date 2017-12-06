@@ -6,7 +6,6 @@ cliente = dict()
 clientes = dict()
 result = ''
 new_client = []
-clientes_list = []
 
 while True:
     result = ei.choicebox("Escolha uma opção", "Menu", menu_options)
