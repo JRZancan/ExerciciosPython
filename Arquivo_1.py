@@ -10,8 +10,8 @@ for item in coisa:
     linha_atual = item.split(" ")
 
     for palavra in linha_atual:
-        palavra.strip()  #Remove TABs e whitespaces da palavra, que atrapalham a contagem de caracteres
-        if palavra != "\n":  #Verifica se a "palavra" não é apenas um "\n"
+        palavra.strip()  # Remove TABs e whitespaces da palavra, que atrapalham a contagem de caracteres
+        if palavra != "\n":  # Verifica se a "palavra" não é apenas um "\n"
             tamanho = len(palavra)
 
             if tamanho % 2 != 0:
