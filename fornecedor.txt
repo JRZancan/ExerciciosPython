@@ -1,0 +1,2 @@
+123456789;Fornecedor Fornecido;
+987654321;Fornecedor de Fornecimento;

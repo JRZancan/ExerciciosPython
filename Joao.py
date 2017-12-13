@@ -1,11 +1,9 @@
 import easygui as ei
 
-lista = []
 lista_impares = []
-listanumeros = []
 
 
-def carregar(lista):
+def carregar():
     msg = "Escolha o arquivo que quer carregar"
     title = "Carregamento"
     arquivonome = ei.fileopenbox(msg, title)
@@ -16,11 +14,9 @@ def carregar(lista):
     arquivo = open(arquivonome, 'r')
 
     for linhas in arquivo:
-        palavras = linhas.split(',')
+        palavras = linhas.split(' ')
         for tamanho in palavras:
             numeros = len(tamanho)
-            listanumeros.append(numeros)
-
             if numeros % 2 != 0:
                 lista_impares.append(tamanho)
 
@@ -28,6 +24,24 @@ def carregar(lista):
     return lista_impares
 
 
-x = carregar(lista)
+def salvar(palavras_impares):
+    msg = "Escolha onde deseja salvar"
+    title = "SALVAR"
+    default = "arquivosalvo.csv"
 
-print(x)
+    nomearquivo = ei.filesavebox(msg, title, default)
+
+    if nomearquivo is None:
+        return
+
+    arquivo1 = open(nomearquivo, 'w')
+
+    for palavra in palavras_impares:
+        texto = palavra + '\n'
+
+        arquivo1.write(texto)
+
+
+carregar()
+
+salvar(lista_impares)

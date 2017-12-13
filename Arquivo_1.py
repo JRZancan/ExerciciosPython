@@ -1,26 +1,55 @@
 import easygui as ei
 
-nome_arquivo = ei.fileopenbox("Escolha o arquivo que deseja abrir", "Aqruivo")
 
-print(nome_arquivo)
+str1 = "Ola"
 
-coisa = open(nome_arquivo, 'r')
-impares = []
-for item in coisa:
-    linha_atual = item.split(" ")
+oi = int(str1)
 
-    for palavra in linha_atual:
-        palavra.strip()  # Remove TABs e whitespaces da palavra, que atrapalham a contagem de caracteres
-        if palavra != "\n":  # Verifica se a "palavra" não é apenas um "\n"
-            tamanho = len(palavra)
+print (oi)
 
-            if tamanho % 2 != 0:
-                impares.append(palavra)
+def carregar():
+    soma = 0
+    msg = "Abra o arquivo"
+    title = "SOME"
 
-arquivo_saida = ei.filesavebox("Onde deseja salvar?", "Salvar")
+    arquivonome = ei.fileopenbox(msg, title)
 
-final = open(arquivo_saida, 'w')
+    if arquivonome is None:
+        return
 
-for palavra in impares:
-    linha = palavra + '\n'
-    final.write(linha)
+    arquivo = open(arquivonome, "r")
+
+    for linhas in arquivo:
+        lista = linhas.split(" ")
+
+        for numero in lista:
+            try:
+                numero_atual = float(numero)
+                print("OK:" + str(numero_atual))
+            except ValueError:
+                numero_atual = 0
+
+        #soma) = float(soma) + float(numero)
+            #print(numero)
+    arquivo.close()
+    return soma
+
+
+def salvar(lista):
+
+    msg = "Escolha onde salvar"
+    title = "SALVAR"
+    default = "Soma.csv"
+    nomearquivo = ei.filesavebox(msg,title,default)
+
+    if nomearquivo is None:
+        return
+
+    arquivo = open(nomearquivo,'w')
+
+    arquivo.write(lista)
+    arquivo.close()
+
+x = carregar()
+
+salvar(x)
